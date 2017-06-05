@@ -1,0 +1,24 @@
+{
+	"name": "react-native-camera-android-simple",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cuonghuynhvan/react-native-camera-android-simple"
+	},
+	"version": "0.0.1",
+	"description": "A Android Camera component for React Native.",
+	"author": "Cuong Huynh <cuonghuynhvan@gmail.com>",
+	"peerDependencies": {
+		"react": ">=15.4.0",
+		"react-native": ">=0.40"
+	},
+	"nativePackage": true,
+	"license": "MIT",
+	"homepage": "https://github.com/cuonghuynhvan/react-native-camera-android-simple",
+	"keywords": [
+		"react-native",
+		"react",
+		"native",
+		"camera",
+		"android"
+	]
+}
