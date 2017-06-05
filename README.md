@@ -20,12 +20,10 @@ All you need is to `import` the `react-native-camera-android-simple` module and 
   ref={(instance) => {
     this.camera = instance;
   }}
-  style={styles.preview}
   type={type}
 />
 
 // to capture a picture
-//
 this.camera.capture({metadata: options})
       .then((data) => console.log(data))
       .catch(err => console.error(err));
