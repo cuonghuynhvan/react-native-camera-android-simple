@@ -7,7 +7,7 @@ It was made to show a portrait camera view. Take a picture as fast as possible.
 ## Getting started
 
 1. `npm install react-native-camera-android-simple`
-2. `react-native link`
+2. `react-native link react-native-camera-android-simple`
 
 ## Usage
 
