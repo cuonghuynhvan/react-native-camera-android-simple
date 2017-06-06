@@ -73,14 +73,24 @@ public class CameraManager {
         Camera.Size previewSize = getBestSize(previewSupportedSizes, whRatio);
         parameters.setPreviewSize(previewSize.width, previewSize.height);
 
-        parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        List<String> supportedFocusModes = camera.getParameters().getSupportedFocusModes();
+        boolean hasAutoFocus = supportedFocusModes != null && supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO);
+
+        if(hasAutoFocus) {
+            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+        }
 
         if(cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
-        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
+        }
+
+        List<String> supportedScreenModes = camera.getParameters().getSupportedSceneModes();
+        boolean hasAutoScene = supportedScreenModes != null && supportedFocusModes.contains(Camera.Parameters.SCENE_MODE_AUTO);
+        if(hasAutoScene) {
+            parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
         }
 
         parameters.setColorEffect(Camera.Parameters.EFFECT_NONE);
-        parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
 
         int orientation = cameraInfo.orientation;
         parameters.setRotation(orientation);

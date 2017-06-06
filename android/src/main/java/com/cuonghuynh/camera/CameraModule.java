@@ -60,6 +60,8 @@ public class CameraModule extends ReactContextBaseJavaModule {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+                    camera.startPreview();
                 }
             }
         });
