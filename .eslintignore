@@ -1,0 +1,12 @@
+**/demo/*
+android/
+ios/
+coverage/
+**/node_modules/*
+**/blueprints/*
+storybook-static/*
+public/build/*
+web/nginx/
+**/.tmp/*
+.tmp/
+public/

@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -18,83 +12,6 @@ const Type = {
   BACK: 'back'
 };
 
-export default class Example extends Component {
-
-  constructor(props) {
-    super(props);
-    this._onCapturePress = this._onCapturePress.bind(this);
-    this._onReversePress = this._onReversePress.bind(this);
-
-    this.state = {
-      type: Type.BACK
-    };
-  }
-
-  _onReversePress() {
-    const {type} = this.state;
-    this.setState({
-      type: type===Type.BACK ? Type.FRONT : Type.BACK
-    });
-  }
-
-  _onCapturePress() {
-    const options = {};
-    this.camera.capture({metadata: options})
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(err => onError(err));
-  }
-
-  _renderCameraButtons() {
-    return (
-      <View
-        style={styles.captureContainer}
-        accessibilityLabel="Camera_Container"
-      >
-        <View style={styles.captureChildContainer} />
-        <View style={styles.circleBorder}>
-          <Button
-            onPress={this._onCapturePress}
-            style={styles.captureButton}
-            title="[capture]"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
-        <View style={styles.captureChildContainer}>
-          <Button
-            style={styles.reverseCameraButton}
-            onPress={this._onReversePress}
-            title="[Change]"
-            color="#999999"
-            accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
-      </View>
-    );
-  }
-
-  render() {
-    const {type} = this.state;
-    return (
-      <View
-        style={styles.preview}
-      >
-        <Camera
-          ref={(instance) => {
-            this.camera = instance;
-          }}
-          style={styles.preview}
-          type={type}
-        />
-
-        {this._renderCameraButtons()}
-
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -142,7 +59,87 @@ const styles = StyleSheet.create({
     borderRadius: 64,
     borderColor: '#ffffff',
     backgroundColor: 'transparent'
-  },
+  }
 });
+
+export default class Example extends Component {
+
+  constructor(props) {
+    super(props);
+    this._onCapturePress = this._onCapturePress.bind(this);
+    this._onReversePress = this._onReversePress.bind(this);
+
+    this.state = {
+      type: Type.BACK
+    };
+  }
+
+  _onReversePress() {
+    const { type } = this.state;
+    this.setState({
+      type: type === Type.BACK ? Type.FRONT : Type.BACK
+    });
+  }
+
+  _onCapturePress() {
+    const options = {};
+    this.camera.capture({ metadata: options })
+      .then((data) => {
+        // Handle you callback data here.
+      })
+      .catch((err) => {
+        // Handle error here
+      });
+  }
+
+  _renderCameraButtons() {
+    return (
+      <View
+        style={styles.captureContainer}
+        accessibilityLabel="Camera_Container"
+      >
+        <View style={styles.captureChildContainer} />
+        <View style={styles.circleBorder}>
+          <Button
+            onPress={this._onCapturePress}
+            style={styles.captureButton}
+            title="[capture]"
+            color="#841584"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+        <View style={styles.captureChildContainer}>
+          <Button
+            style={styles.reverseCameraButton}
+            onPress={this._onReversePress}
+            title="[Change]"
+            color="#999999"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
+      </View>
+    );
+  }
+
+  render() {
+    const { type } = this.state;
+    return (
+      <View
+        style={styles.preview}
+      >
+        <Camera
+          ref={(instance) => {
+            this.camera = instance;
+          }}
+          style={styles.preview}
+          type={type}
+        />
+
+        {this._renderCameraButtons()}
+
+      </View>
+    );
+  }
+}
 
 AppRegistry.registerComponent('Example', () => Example);
