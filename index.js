@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { PropTypes, Component } from 'react';
 import { NativeModules, requireNativeComponent, View } from 'react-native';
 

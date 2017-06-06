@@ -8,14 +8,20 @@
 	"description": "A Android Camera component for React Native.",
 	"author": "Cuong Huynh <cuonghuynhvan@gmail.com>",
 	"scripts": {
+    "precommit": "yarn run lint",
 		"lint": "eslint . --ext .js .jsx --cache",
 		"lintFix": "eslint . --ext .js .jsx --fix --cache"
 	},
+  "dependencies": {
+    "react": ">=15.4.0",
+    "react-native": ">=0.40"
+  },
 	"peerDependencies": {
 		"react": ">=15.4.0",
 		"react-native": ">=0.40"
 	},
 	"devDependencies": {
+    "husky": "^0.13.1",
     "babel-eslint": "^7.1.1",
 		"eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.1.0",

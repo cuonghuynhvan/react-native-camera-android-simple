@@ -18,15 +18,33 @@ module.exports = {
     "react/jsx-filename-extension": 0,
     "react/no-string-refs": 0,
     "react/forbid-prop-types": 2,
-    "react/jsx-max-props-per-line": [2, { "maximum": 2, "when": "multiline" }],
-    "no-console": [ "error", { allow: ["tron"], }], // for reactotron
-    "no-unused-vars": ["error", { "args": "none" }], // used mostly for redux standard functional patterns
-    "key-spacing": ["error", { "mode": "minimum"}],
+    "react/jsx-max-props-per-line": [2, {"maximum": 2, "when": "multiline"}],
+    "no-console": ["error", {allow: ["tron"],}], // for reactotron
+    "no-unused-vars": ["error", {"args": "none"}], // used mostly for redux standard functional patterns
+    "key-spacing": ["error", {"mode": "minimum"}],
     "arrow-body-style": [0, "as-needed", {
       "requireReturnForObjectLiteral": true
     }],
     "comma-dangle": ["error", "never"],
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "max-len": [
+      "error", {
+        "code": 110,
+        "ignoreComments": true
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error", {
+        "devDependencies": true
+      }
+    ]
+  },
+  settings: {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
   },
   globals: {
     // Set each global variable name equal to true to allow the variable to be overwritten
