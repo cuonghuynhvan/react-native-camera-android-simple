@@ -35,6 +35,6 @@ this.camera.capture({metadata: options})
 #### `data`
  ```json
     {
-        path: "linkt to image file"
+        path: "link to image file"
     }
 ```
