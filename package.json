@@ -12,14 +12,6 @@
 		"lint": "eslint . --ext .js .jsx --cache",
 		"lintFix": "eslint . --ext .js .jsx --fix --cache"
 	},
-  "dependencies": {
-    "react": ">=15.4.0",
-    "react-native": ">=0.40"
-  },
-	"peerDependencies": {
-		"react": ">=15.4.0",
-		"react-native": ">=0.40"
-	},
 	"devDependencies": {
     "husky": "^0.13.1",
     "babel-eslint": "^7.1.1",
