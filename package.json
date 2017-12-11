@@ -1,35 +1,35 @@
 {
-	"name": "react-native-camera-android-simple",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/cuonghuynhvan/react-native-camera-android-simple"
-	},
-	"version": "1.0.5",
-	"description": "A Android Camera component for React Native.",
-	"author": "Cuong Huynh <cuonghuynhvan@gmail.com>",
-	"scripts": {
+  "name": "react-native-camera-android-simple",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cuonghuynhvan/react-native-camera-android-simple"
+  },
+  "version": "1.0.6",
+  "description": "A Android Camera component for React Native.",
+  "author": "Cuong Huynh <cuonghuynhvan@gmail.com>",
+  "scripts": {
     "precommit": "yarn run lint",
-		"lint": "eslint . --ext .js .jsx --cache",
-		"lintFix": "eslint . --ext .js .jsx --fix --cache"
-	},
-	"devDependencies": {
-        "husky": "^0.13.1",
-        "babel-eslint": "^7.1.1",
-		"eslint": "^3.15.0",
-        "eslint-config-airbnb": "^14.1.0",
-        "eslint-plugin-react": "^6.10.0",
-        "eslint-plugin-import": "^2.2.0",
-        "eslint-plugin-jest": "^1.0.2",
-        "eslint-plugin-jsx-a11y": "^4.0.0"
-	},
-	"nativePackage": true,
-	"license": "MIT",
-	"homepage": "https://github.com/cuonghuynhvan/react-native-camera-android-simple",
-	"keywords": [
-		"react-native",
-		"react",
-		"native",
-		"camera",
-		"android"
-	]
+    "lint": "eslint . --ext .js .jsx --cache",
+    "lintFix": "eslint . --ext .js .jsx --fix --cache"
+  },
+  "devDependencies": {
+    "husky": "^0.13.1",
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^1.0.2",
+    "eslint-plugin-jsx-a11y": "^4.0.0"
+  },
+  "nativePackage": true,
+  "license": "MIT",
+  "homepage": "https://github.com/cuonghuynhvan/react-native-camera-android-simple",
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "camera",
+    "android"
+  ]
 }
