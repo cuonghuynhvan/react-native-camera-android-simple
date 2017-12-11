@@ -38,7 +38,8 @@ public class CameraModule extends ReactContextBaseJavaModule {
 
     private void takePicture(Camera camera, final Promise promise) {
         if (camera == null) {
-            promise.reject("No camera found.");
+            promise.reject("CAMERA_NOT_FOUND");
+            return;
         }
 
         camera.takePicture(null, null, new Camera.PictureCallback() {
