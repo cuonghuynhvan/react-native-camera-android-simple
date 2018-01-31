@@ -63,64 +63,72 @@ public class CameraManager {
 
         parameters.setPictureFormat(ImageFormat.JPEG);
 
+        int orientation = cameraInfo.orientation;
+        parameters.setRotation(orientation);
+
         List<Camera.Size> supportedSizes = parameters.getSupportedPictureSizes();
-        Camera.Size pictureSize = getBestSize(supportedSizes, 0);
-        parameters.setPictureSize(pictureSize.width, pictureSize.height);
-
-        float whRatio = (float) pictureSize.width / pictureSize.height;
-
         List<Camera.Size> previewSupportedSizes = parameters.getSupportedPreviewSizes();
-        Camera.Size previewSize = getBestSize(previewSupportedSizes, whRatio);
+
+        Camera.Size previewSize = null, pictureSize = null;
+
+        for (int i = supportedSizes.size() - 1; i >= 0; i--) {
+            Camera.Size tempSize = supportedSizes.get(i);
+            Camera.Size tempPreviewSize = null;
+            float whRatio = (float) tempSize.width / tempSize.height;
+
+            for (int j = previewSupportedSizes.size() - 1; j >= 0; j--) {
+                Camera.Size size = previewSupportedSizes.get(j);
+                float tempWHRatio = (float) size.width / size.height;
+                if (tempWHRatio == whRatio) {
+                    if (tempPreviewSize == null || isNewSizeLarger(tempPreviewSize, size)) {
+                        tempPreviewSize = size;
+                    }
+                }
+            }
+
+            if (tempPreviewSize != null) {
+                if (pictureSize == null || isNewSizeLarger(pictureSize, tempSize)) {
+                    pictureSize = tempSize;
+                    previewSize = tempPreviewSize;
+                }
+            }
+        }
+
+        if (pictureSize == null) {
+            pictureSize = supportedSizes.get(supportedSizes.size() - 1);
+            previewSize = previewSupportedSizes.get(previewSupportedSizes.size() - 1);
+        }
+
+        parameters.setPictureSize(pictureSize.width, pictureSize.height);
         parameters.setPreviewSize(previewSize.width, previewSize.height);
 
         List<String> supportedFocusModes = camera.getParameters().getSupportedFocusModes();
         boolean hasAutoFocus = supportedFocusModes != null && supportedFocusModes.contains(Camera.Parameters.FOCUS_MODE_AUTO);
 
-        if(hasAutoFocus) {
+        if (hasAutoFocus) {
             parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         }
 
-        if(cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+        if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
             parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);
         }
 
         List<String> supportedScreenModes = camera.getParameters().getSupportedSceneModes();
         boolean hasAutoScene = supportedScreenModes != null && supportedFocusModes.contains(Camera.Parameters.SCENE_MODE_AUTO);
-        if(hasAutoScene) {
+        if (hasAutoScene) {
             parameters.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
         }
 
         parameters.setColorEffect(Camera.Parameters.EFFECT_NONE);
 
-        int orientation = cameraInfo.orientation;
-        parameters.setRotation(orientation);
-
         camera.setParameters(parameters);
     }
 
-    public static Camera.Size getBestSize(List<Camera.Size> supportedSizes, float whRatio) {
-        Camera.Size bestSize = null;
-        for (Camera.Size size : supportedSizes) {
-            float ratio = (float) size.width / size.height;
+    private boolean isNewSizeLarger(Camera.Size oldSize, Camera.Size newSize) {
+        int resultArea = oldSize.width * oldSize.height;
+        int newArea = newSize.width * newSize.height;
 
-            if( whRatio != 0 && ratio != whRatio) {
-                continue;
-            }
-
-            if (bestSize == null) {
-                bestSize = size;
-                continue;
-            }
-
-            int resultArea = bestSize.width * bestSize.height;
-            int newArea = size.width * size.height;
-
-            if (newArea > resultArea) {
-                bestSize = size;
-            }
-        }
-
-        return bestSize;
+        return newArea > resultArea;
     }
 
     public Camera.Parameters getCameraParameters() {
